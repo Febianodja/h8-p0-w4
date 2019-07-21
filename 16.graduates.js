@@ -1,5 +1,8 @@
 function graduates (students) {
     var result = {};
+    if (students.length === 0) {
+        return {};
+    }
     for (var i = 0 ; i < students.length ; i++) {
         if (!result[students[i].class]) {
             result[students[i].class] = [];
@@ -7,8 +10,10 @@ function graduates (students) {
         var temp = {
             name: students[i].name,
             score: students[i].score
-        }
-        result[students[i].class].push(temp);
+        };
+        if (students[i].score >= 75) {
+            result[students[i].class].push(temp);
+        } 
     }
     return result;
 }
@@ -39,7 +44,6 @@ console.log(graduates([
 // {
 //   foxes: [
 //     { name: 'Dimitri', score: 90 }
-//     { name: 'Sergei, score: 74 }
 //   ],
 //   wolves: [
 //     { name: 'Alexei' , score: 85 },
