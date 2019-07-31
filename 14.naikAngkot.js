@@ -1,23 +1,25 @@
 function naikAngkot(arrPenumpang) {
     rute = ['A', 'B', 'C', 'D', 'E', 'F'];
-    var result = [];
-    var tarif = 2000;
-    for (var i = 0 ; i < arrPenumpang.length ; i ++) {
-        var temp = {
-            penumpang: arrPenumpang[i][0],
-            naikDari: arrPenumpang[i][1],
-            tujuan: arrPenumpang[i][2],
-        }
-        result.push(temp);
+    var array = []
+    if (arrPenumpang.length === 0){
+      return array;
+    } 
+    else {
+      var biaya = 2000;
+      var penumpang;
+      for (var i=0; i<arrPenumpang.length; i++){
+        var obj = {};
+        penumpang = arrPenumpang[i];
+        obj['penumpang'] = penumpang[0];
+        obj['naikDari'] = penumpang[1];
+        obj['tujuan'] = penumpang[2];
+        obj["bayar"] = biaya*(rute.indexOf(obj.tujuan) - rute.indexOf(obj.naikDari))
+        array.push(obj)
+      }
+      
     }
-    for (var j = 0 ; j < result.length ; j++) {
-        for (var k = 0 ; k < rute.length ; k++) {
-            console.log(rute[k])
-        }
-    }
-    // return result;
-}
-    
+    return array
+  }
   
   //TEST CASE
   console.log(naikAngkot([['Dimitri', 'B', 'F'], ['Icha', 'A', 'B']]));
